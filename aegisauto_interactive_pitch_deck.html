@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AegisAuto - ET AutoTech Hackathon 2026 Interactive Pitch Deck</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Serif Editorial & Sans UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Custom ET Theme Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121214;
+            color: #1a1a1a;
+        }
+        
+        .font-serif-et {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .paper-bg {
+            background-color: #FDF6EE; /* Classic ET Salmon-Beige Print Tone */
+            background-image: 
+                radial-gradient(rgba(139, 92, 26, 0.03) 1px, transparent 0),
+                radial-gradient(rgba(139, 92, 26, 0.02) 1px, transparent 0);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
+            box-shadow: inset 0 0 40px rgba(139, 92, 26, 0.05);
+        }
+
+        /* Newspaper column styling */
+        .newspaper-cols {
+            column-count: 2;
+            column-gap: 2rem;
+            column-rule: 1px dashed rgba(166, 25, 46, 0.2);
+        }
+        @media (max-width: 768px) {
+            .newspaper-cols {
+                column-count: 1;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e24;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A6192E;
+            border-radius: 4px;
+        }
+
+        .slide-transition {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden min-h-screen flex flex-col justify-between">
+
+    <!-- Top Branding Navigation Bar -->
+    <header class="bg-[#101723] text-white border-b-4 border-[#A6192E] py-3 px-6 shadow-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-[#A6192E] text-white font-cinzel text-xl px-3 py-1 font-bold tracking-wider rounded">ET</div>
+                <div>
+                    <h1 class="font-serif-et text-lg font-bold tracking-wide leading-none text-[#FFF1E0]">AUTOTECH HACKATHON 2026</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Official Idea Submission • Theme 1</p>
+                </div>
+            </div>
+            
+            <!-- Real-time customizable variables -->
+            <div class="flex flex-wrap items-center gap-4 text-xs">
+                <div class="bg-gray-800/80 px-3 py-1.5 rounded border border-gray-700 flex items-center gap-2">
+                    <span class="text-gray-400 font-medium">Team Name:</span>
+                    <input type="text" id="global-team-name" value="Team Pioneer-X" class="bg-transparent font-bold text-yellow-400 border-none outline-none focus:ring-1 focus:ring-red-500 rounded px-1 w-28">
+                </div>
+                <div class="bg-gray-800/80 px-3 py-1.5 rounded border border-gray-700 flex items-center gap-2">
+                    <span class="text-gray-400 font-medium">Members:</span>
+                    <input type="text" id="global-team-members" value="A. Sharma, R. Verma, S. Patel" class="bg-transparent font-semibold text-white border-none outline-none focus:ring-1 focus:ring-red-500 rounded px-1 w-48">
+                </div>
+                <button onclick="syncAllFields()" class="bg-[#A6192E] hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded transition flex items-center gap-1.5">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Sync
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col lg:flex-row gap-6">
+        
+        <!-- Left Sidebar: Controls & Live Variables -->
+        <aside class="w-full lg:w-80 flex flex-col gap-4 shrink-0">
+            <!-- Navigation Card -->
+            <div class="bg-[#1A1F2C] text-white p-5 rounded-lg border border-gray-800 shadow-xl">
+                <h3 class="text-xs uppercase tracking-widest text-[#A6192E] font-bold mb-4 flex items-center gap-2">
+                    <i data-lucide="presentation" class="w-4 h-4"></i> Slide Index
+                </h3>
+                <div class="space-y-2" id="slide-nav-list">
+                    <!-- Javascript generated nav items -->
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between gap-2">
+                    <button id="prev-btn" onclick="prevSlide()" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-3 rounded text-xs transition flex items-center justify-center gap-1">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Prev
+                    </button>
+                    <span class="text-xs text-gray-400 font-mono font-bold" id="slide-fraction">1 / 6</span>
+                    <button id="next-btn" onclick="nextSlide()" class="flex-1 bg-[#A6192E] hover:bg-red-700 text-white font-semibold py-2 px-3 rounded text-xs transition flex items-center justify-center gap-1">
+                        Next <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div class="mt-3 text-center">
+                    <p class="text-[10px] text-gray-500 font-mono">Tip: Use Left / Right Arrow Keys on Keyboard</p>
+                </div>
+            </div>
+
+            <!-- Global Context Controller -->
+            <div class="bg-[#1A1F2C] text-white p-5 rounded-lg border border-gray-800 shadow-xl">
+                <h3 class="text-xs uppercase tracking-widest text-amber-500 font-bold mb-3 flex items-center gap-2">
+                    <i data-lucide="sliders" class="w-4 h-4"></i> Live Pitch Customizer
+                </h3>
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">Adjust these variables to make your proposal instantly customized for your team and company context.</p>
+                
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block text-gray-400 mb-1 font-semibold">Solution Name</label>
+                        <input type="text" id="global-project-name" value="AEGISAUTO" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white font-bold focus:ring-1 focus:ring-red-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1 font-semibold">Target Automotive OEM</label>
+                        <input type="text" id="global-oem-name" value="Tata Motors, Mahindra, Maruti Suzuki" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:ring-1 focus:ring-red-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1 font-semibold">Key Disruptive Focus</label>
+                        <select id="global-disruptive-focus" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:ring-1 focus:ring-red-500 outline-none">
+                            <option value="Suez & Red Sea Logistics Sourcing Routing">Suez & Red Sea Route Shortages</option>
+                            <option value="Raw Steel & Heavy Aluminum Metal Volatility">Metal & Aluminum Supply Shocks</option>
+                            <option value="High-Density Semiconductor Geopolitical Clusters">Taiwan/China Semiconductor Sourcing</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-5 pt-3 border-t border-gray-800">
+                    <button onclick="downloadPitchMarkdown()" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 px-4 rounded text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i> Export Pitch Text (MD)
+                    </button>
+                    <p class="text-[9px] text-gray-500 text-center mt-2">Click to export formatted pitch answers for copy-pasting to your PowerPoint slides.</p>
+                </div>
+            </div>
+
+            <!-- Fast-Track Judging Checklist Card -->
+            <div class="bg-[#1A1F2C] text-white p-5 rounded-lg border border-gray-800 shadow-xl text-xs">
+                <h3 class="text-xs uppercase tracking-widest text-[#A6192E] font-bold mb-3 flex items-center gap-2">
+                    <i data-lucide="check-square" class="w-4 h-4"></i> Hackathon Compliance
+                </h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5"></i>
+                        <span>Includes precise theme description (Theme 1).</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5"></i>
+                        <span>Explicitly labels "New Solution" vs "Improvement".</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5"></i>
+                        <span>Specifies complete Tech Stack & Architecture.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5"></i>
+                        <span>Includes interactive visual proof of feasibility.</span>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Right Side: The Paper Slide Deck Presentation Screen -->
+        <section class="flex-grow flex flex-col">
+            
+            <!-- Slide Container Paper Background -->
+            <div class="paper-bg text-[#1E1E24] p-6 md:p-10 rounded-xl border-4 border-double border-[#A6192E] shadow-2xl flex-grow flex flex-col justify-between slide-transition relative min-h-[580px]">
+                
+                <!-- Slide Watermark/Decorative Banner (Newspaper style header decoration) -->
+                <div class="flex items-center justify-between border-b-2 border-gray-800 pb-3 mb-6">
+                    <div class="text-[10px] uppercase font-bold tracking-widest text-gray-600 font-mono flex items-center gap-1.5">
+                        <i data-lucide="newspaper" class="w-3.5 h-3.5 text-[#A6192E]"></i> Special Feature • The Economic Times Style Agency Pitch
+                    </div>
+                    <div class="text-[10px] font-mono text-gray-500 font-bold" id="slide-num-top">
+                        PAGE 1 of 6
+                    </div>
+                </div>
+
+                <!-- Live Dynamic Content Injector -->
+                <div class="flex-grow flex flex-col justify-between" id="active-slide-view">
+                    <!-- Slides are dynamically rendered here -->
+                </div>
+
+                <!-- Slide Footer (Standard on all slides) -->
+                <div class="border-t border-gray-300 pt-4 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                    <div class="text-gray-500 font-medium">
+                        Project ID: <span class="font-bold text-[#A6192E]">ET2026-T1-AEGIS</span> | Registered Team: <span class="text-gray-800 font-bold active-team-placeholder">Team Pioneer-X</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="inline-block w-2.5 h-2.5 bg-green-600 rounded-full animate-ping"></span>
+                        <span class="text-[10px] font-mono font-bold tracking-tight text-gray-600">PREV AND PLAY READY FOR STAGE WALKTHROUGH</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Global Footer / Credits -->
+    <footer class="bg-[#101723] text-gray-400 py-4 px-6 border-t border-gray-800 text-center text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>© 2026 ET AutoTech Hackathon. Formulated according to the 100-Point Evaluation Rubric.</p>
+            <div class="flex items-center gap-4 font-mono text-[10px]">
+                <span>FEASIBILITY WEIGHTAGE: 15%</span>
+                <span class="text-red-500">|</span>
+                <span>REASONING ARCHITECTURE: 20%</span>
+                <span class="text-red-500">|</span>
+                <span>ORIGINALITY: 20%</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Slides Data Store & Presentation Logic Script -->
+    <script>
+        // Set dynamic state
+        let currentSlideIdx = 0;
+        let projectName = "AEGISAUTO";
+        let targetOEM = "Tata Motors, Mahindra, Maruti Suzuki";
+        let teamName = "Team Pioneer-X";
+        let teamMembers = "A. Sharma, R. Verma, S. Patel";
+        let focusDisruption = "Suez & Red Sea Logistics Sourcing Routing";
+
+        // Slide Content Data
+        const getSlidesData = () => [
+            {
+                id: "slide-title",
+                title: "ET AUTOTECH HACKATHON 2026",
+                subtitle: "Automotive Industry Enterprise Pitch Doc",
+                html: `
+                    <div class="text-center py-8">
+                        <div class="inline-block bg-[#A6192E] text-[#FFF1E0] font-cinzel text-xs tracking-widest px-4 py-1.5 mb-6 uppercase font-bold">
+                            Official Proposal Entry
+                        </div>
+                        
+                        <!-- Main Logo Branding Title -->
+                        <h2 class="font-serif-et text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight mb-4 select-all">
+                            ${projectName}
+                        </h2>
+                        
+                        <p class="font-serif-et text-xl md:text-2xl italic text-gray-800 max-w-3xl mx-auto mb-8 leading-relaxed">
+                            Cognitive Supply-to-Shop Floor Orchestration Engine for Resilient Indian Automotive Ecosystems
+                        </p>
+
+                        <div class="w-24 h-1 bg-[#A6192E] mx-auto mb-8"></div>
+
+                        <!-- Target Theme Badge -->
+                        <div class="max-w-3xl mx-auto bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 shadow-sm">
+                            <span class="block text-xs uppercase font-bold text-amber-800 tracking-wider mb-1">Theme Chosen:</span>
+                            <span class="text-sm font-semibold text-gray-900">
+                                Theme 1: AI for Resilient Automotive Supply Chains & Smart Manufacturing
+                            </span>
+                        </div>
+
+                        <!-- Interactive Live-Synced Variable Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto text-left">
+                            <div class="bg-white/80 p-4 rounded-lg border border-gray-200 shadow-sm flex items-start gap-3">
+                                <div class="bg-red-50 p-2 rounded text-[#A6192E]">
+                                    <i data-lucide="users" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold block">Team Identification</span>
+                                    <span class="font-serif-et text-lg font-bold text-gray-900 active-team-placeholder">${teamName}</span>
+                                    <span class="block text-xs text-gray-600 mt-1">Members: <span class="active-members-placeholder">${teamMembers}</span></span>
+                                </div>
+                            </div>
+                            <div class="bg-white/80 p-4 rounded-lg border border-gray-200 shadow-sm flex items-start gap-3">
+                                <div class="bg-amber-50 p-2 rounded text-amber-700">
+                                    <i data-lucide="truck" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold block">Primary Targets & Scenarios</span>
+                                    <span class="font-semibold text-gray-900 block text-xs mt-1">OEMs: <strong class="text-gray-900">${targetOEM}</strong></span>
+                                    <span class="block text-xs text-gray-600 mt-1">Crisis Module: <strong class="text-red-700">${focusDisruption}</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "slide-theme",
+                title: "Theme Chosen - Brief Summary & Proposed Solution/Idea",
+                html: `
+                    <div>
+                        <!-- Section Indicator -->
+                        <span class="text-xs font-bold text-[#A6192E] uppercase tracking-widest font-mono">Deliverable Requirement 1</span>
+                        <h3 class="font-serif-et text-3xl font-bold text-slate-900 mt-1 mb-4">
+                            The Paradigm Shift: Resilient SCM Coupled with Smart shop floors
+                        </h3>
+
+                        <!-- Newspaper Dual Column Layout for high density executive presentation -->
+                        <div class="newspaper-cols text-sm leading-relaxed text-gray-800">
+                            <p class="mb-4">
+                                <span class="float-left text-4xl font-bold font-serif-et text-[#A6192E] pr-2 pt-1 leading-none">T</span>he legacy automotive ecosystem keeps external supply logistics and internal factory operations isolated. This siloed layout leaves OEMs fully vulnerable to global geopolitical volatility, customs friction, and resource scarcity. <strong>${projectName}</strong> breaks down these traditional silos by executing a unified, bi-directional cognitive control loop.
+                            </p>
+                            
+                            <p class="mb-4">
+                                Our solution tracks and ingests global maritime bottlenecks, mining updates, and political risks. It combines this unstructured macro data with micro-level shop-floor realities, including machine process tolerances ($C_p$, $C_{pk}$), computer vision weld anomalies, and localized energy capacity peaks. 
+                            </p>
+
+                            <p class="mb-4">
+                                When a disruption strikes a critical tier-2 supplier, the AI engine triggers a proactive, fully structured reaction: it recommends vetted alternative Indian suppliers, calculates alternative raw steel grades, and feeds updated parameters to operators' terminals.
+                            </p>
+
+                            <div class="bg-white border border-red-100 rounded-lg p-3 my-2 shadow-sm break-inside-avoid">
+                                <h4 class="font-bold text-xs text-[#A6192E] uppercase mb-1">Status: Original / New Solution</h4>
+                                <p class="text-xs text-gray-600 leading-normal">
+                                    This is a <strong>brand-new integrated architecture</strong>. Unlike standalone ERP modules or basic manufacturing dashboard overlays, ${projectName} uses advanced reasoning agents to bind macro supply forecasting with real-time shop floor variables.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Summary Tabs (Macro vs Micro) -->
+                        <div class="mt-6 bg-white rounded-xl border border-gray-200 p-4 shadow-md">
+                            <h4 class="text-xs uppercase tracking-wider text-gray-500 font-bold mb-3 flex items-center gap-1.5">
+                                <i data-lucide="sparkles" class="text-amber-500 w-4 h-4"></i> Interactive Feature Breakdown (Click Tabs to Inspect):
+                            </h4>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <button onclick="toggleFeatureTab('macro')" id="tab-btn-macro" class="flex-1 bg-red-50 border border-red-200 rounded-lg p-3 text-left transition hover:bg-red-100/50">
+                                    <div class="font-serif-et font-bold text-sm text-[#A6192E] flex items-center gap-1.5 mb-1">
+                                        <i data-lucide="globe"></i> 1. The Macro Cognitive Supply Layer
+                                    </div>
+                                    <p class="text-xs text-gray-600 leading-normal">Ingests maritime positions, news reports, and commodity trends. Employs Gemini to instantly auto-draft alternative supplier agreements and flag logistics bottlenecks.</p>
+                                </button>
+                                <button onclick="toggleFeatureTab('micro')" id="tab-btn-micro" class="flex-1 bg-gray-50 border border-gray-200 rounded-lg p-3 text-left transition hover:bg-red-50/50">
+                                    <div class="font-serif-et font-bold text-sm text-gray-700 flex items-center gap-1.5 mb-1" id="tab-title-micro">
+                                        <i data-lucide="cpu"></i> 2. The Micro Adaptive Shop Floor
+                                    </div>
+                                    <p class="text-xs text-gray-600 leading-normal">Processes high-resolution video streams via edge computer vision, optimizing machinery settings ($C_p, C_{pk}$) and balancing local energy spikes dynamically.</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "slide-impact",
+                title: "IMPACT OF PROPOSED SOLUTION",
+                html: `
+                    <div>
+                        <span class="text-xs font-bold text-[#A6192E] uppercase tracking-widest font-mono">Deliverable Requirement 2</span>
+                        <h3 class="font-serif-et text-3xl font-bold text-slate-900 mt-1 mb-4">
+                            Hard Financial and Operational ROI Projections
+                        </h3>
+
+                        <!-- Interactive Impact Simulator Box -->
+                        <div class="bg-amber-50/75 border border-amber-200 rounded-xl p-5 mb-6 shadow-sm">
+                            <h4 class="font-serif-et text-base font-bold text-amber-900 mb-3 flex items-center gap-2">
+                                <i data-lucide="calculator" class="text-amber-600"></i> Interactive Business Impact Calculator
+                            </h4>
+                            <p class="text-xs text-amber-800 mb-4 leading-normal">
+                                Drag the sliders below based on average manufacturing losses to calculate how ${projectName} transforms operational margins.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                                <div class="bg-white p-3 rounded border border-amber-200 shadow-sm">
+                                    <div class="flex justify-between text-xs font-bold text-gray-700 mb-1">
+                                        <span>Avg. Supplier Delayed Shipments / Year</span>
+                                        <span class="text-[#A6192E]" id="calc-delay-val">24</span>
+                                    </div>
+                                    <input type="range" id="slider-delays" min="5" max="100" value="24" class="w-full accent-[#A6192E]" oninput="updateImpactCalc()">
+                                    <p class="text-[10px] text-gray-400 mt-1">Average OEM disruption days per delay: 3.5 days</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-amber-200 shadow-sm">
+                                    <div class="flex justify-between text-xs font-bold text-gray-700 mb-1">
+                                        <span>Cost per Production Halt Day (₹ Lakhs)</span>
+                                        <span class="text-[#A6192E]">₹ <span id="calc-cost-val">45</span> Lakhs</span>
+                                    </div>
+                                    <input type="range" id="slider-cost" min="10" max="250" value="45" class="w-full accent-[#A6192E]" oninput="updateImpactCalc()">
+                                    <p class="text-[10px] text-gray-400 mt-1">Includes factory labor, inventory carrying cost, and dealer penalties</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-white/90 p-4 rounded-lg border border-amber-200 text-center shadow-md">
+                                <div>
+                                    <span class="block text-[10px] text-gray-500 uppercase tracking-widest font-bold">Estimated Cost Saved</span>
+                                    <span class="text-xl font-bold text-emerald-700 font-mono" id="calc-saved-cost">₹ 432 Lakhs</span>
+                                </div>
+                                <div class="border-y sm:border-y-0 sm:border-x border-amber-200 py-2 sm:py-0">
+                                    <span class="block text-[10px] text-gray-500 uppercase tracking-widest font-bold">Supply Downtime Prevented</span>
+                                    <span class="text-xl font-bold text-indigo-700 font-mono" id="calc-saved-days">29.4 Days</span>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-gray-500 uppercase tracking-widest font-bold">Line Process Stability (Cpk)</span>
+                                    <span class="text-xl font-bold text-[#A6192E] font-mono">1.67+ (Excellent)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Three-Pillar Breakdown Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div class="text-[#A6192E] mb-2">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-serif-et text-base font-bold text-gray-900 mb-1">1. Feasibility (High)</h4>
+                                <p class="text-xs text-gray-600 leading-normal">
+                                    Utilizes existing factory closed-circuit video feeds and light web scrapers. Avoids heavy infrastructure overhauls by deploying with lightweight, API-driven low-code platforms.
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div class="text-indigo-600 mb-2">
+                                    <i data-lucide="trending-up" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-serif-et text-base font-bold text-gray-900 mb-1">2. Scalability (Massive)</h4>
+                                <p class="text-xs text-gray-600 leading-normal">
+                                    Cloud-native containerized architecture scales effortlessly from Tier-1 hub assemblies down to minor, highly critical component suppliers located anywhere in India.
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div class="text-emerald-600 mb-2">
+                                    <i data-lucide="target" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-serif-et text-base font-bold text-gray-900 mb-1">3. Direct Sourcing Impact</h4>
+                                <p class="text-xs text-gray-600 leading-normal">
+                                    Automatically de-risks critical dependencies on specialized electronic and alloy components imported from high-risk geopolitical jurisdictions by suggesting immediate alternatives.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "slide-techstack",
+                title: "PROPOSED TECH STACK & SYSTEM ARCHITECTURE",
+                html: `
+                    <div>
+                        <span class="text-xs font-bold text-[#A6192E] uppercase tracking-widest font-mono">Deliverable Requirement 3</span>
+                        <h3 class="font-serif-et text-3xl font-bold text-slate-900 mt-1 mb-4">
+                            Double-Pipeline Intelligence Architecture
+                        </h3>
+
+                        <!-- Dynamic Interactive Architecture Viewer -->
+                        <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-lg mb-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-serif-et text-sm font-bold text-gray-800">
+                                    Interactive Architectural Pipeline:
+                                </h4>
+                                <div class="flex gap-1.5 text-[9px] font-mono">
+                                    <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200">REAL-TIME APIS</span>
+                                    <span class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded border border-indigo-200">GEMINI AGENT SYSTEM</span>
+                                </div>
+                            </div>
+
+                            <!-- SVG Architecture Render -->
+                            <div class="bg-[#101723] p-4 rounded-lg relative overflow-x-auto min-w-[500px]">
+                                <div class="flex items-center justify-between gap-4 text-xs font-semibold text-white">
+                                    
+                                    <!-- Pipeline Node 1 -->
+                                    <div class="flex-1 bg-slate-800 p-3 rounded border border-gray-700 text-center relative group cursor-pointer" onclick="highlightArchStep(1)">
+                                        <div class="text-indigo-400 mb-1"><i data-lucide="database" class="w-5 h-5 mx-auto"></i></div>
+                                        <div class="font-bold text-[10px]">1. INGESTION</div>
+                                        <div class="text-[9px] text-gray-400 mt-1 leading-none">ERP APIs & Video Streams</div>
+                                        <div class="absolute -right-3 top-1/2 -translate-y-1/2 text-[#A6192E] font-bold">➔</div>
+                                    </div>
+
+                                    <!-- Pipeline Node 2 -->
+                                    <div class="flex-1 bg-slate-800 p-3 rounded border border-gray-700 text-center relative cursor-pointer" onclick="highlightArchStep(2)">
+                                        <div class="text-amber-400 mb-1"><i data-lucide="brain-circuit" class="w-5 h-5 mx-auto animate-pulse"></i></div>
+                                        <div class="font-bold text-[10px] text-amber-300">2. GEMINI CORE</div>
+                                        <div class="text-[9px] text-gray-400 mt-1 leading-none">Structured SCM Agent</div>
+                                        <div class="absolute -right-3 top-1/2 -translate-y-1/2 text-[#A6192E] font-bold">➔</div>
+                                    </div>
+
+                                    <!-- Pipeline Node 3 -->
+                                    <div class="flex-1 bg-slate-800 p-3 rounded border border-gray-700 text-center relative cursor-pointer" onclick="highlightArchStep(3)">
+                                        <div class="text-emerald-400 mb-1"><i data-lucide="terminal" class="w-5 h-5 mx-auto"></i></div>
+                                        <div class="font-bold text-[10px]">3. ACTION HUB</div>
+                                        <div class="text-[9px] text-gray-400 mt-1 leading-none">Dynamic Re-routing API</div>
+                                        <div class="absolute -right-3 top-1/2 -translate-y-1/2 text-[#A6192E] font-bold">➔</div>
+                                    </div>
+
+                                    <!-- Pipeline Node 4 -->
+                                    <div class="flex-1 bg-slate-800 p-3 rounded border-gray-700 text-center cursor-pointer" onclick="highlightArchStep(4)">
+                                        <div class="text-rose-400 mb-1"><i data-lucide="tablet" class="w-5 h-5 mx-auto"></i></div>
+                                        <div class="font-bold text-[10px]">4. OPERATOR VIEW</div>
+                                        <div class="text-[9px] text-gray-400 mt-1 leading-none">Shop Floor HUD</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <!-- Dynamically loaded details based on selected step -->
+                            <div class="mt-3 bg-slate-50 p-3 rounded border border-gray-200 text-xs text-gray-700 leading-normal" id="arch-step-detail">
+                                <strong>Interactive Guide:</strong> Click any of the pipeline nodes above to drill down into the technical execution and components used!
+                            </div>
+                        </div>
+
+                        <!-- Technical Stack Component Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                            <div class="bg-white/80 p-3 rounded border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-[#A6192E] uppercase mb-1 flex items-center gap-1.5">
+                                    <i data-lucide="server"></i> Backend & SCM Engine
+                                </h4>
+                                <ul class="space-y-1 text-gray-600 list-disc list-inside leading-relaxed">
+                                    <li>Python (FastAPI, LangChain)</li>
+                                    <li>Gemini 2.5 Flash API</li>
+                                    <li>SAP/Oracle ERP Connectors</li>
+                                    <li>PostgreSQL (Vector Store)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white/80 p-3 rounded border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-[#A6192E] uppercase mb-1 flex items-center gap-1.5">
+                                    <i data-lucide="eye"></i> Computer Vision (CV)
+                                </h4>
+                                <ul class="space-y-1 text-gray-600 list-disc list-inside leading-relaxed">
+                                    <li>YOLOv8 Edge Models</li>
+                                    <li>OpenCV Frame Processing</li>
+                                    <li>TensorRT Optimization</li>
+                                    <li>WebRTC Live streams</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white/80 p-3 rounded border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-[#A6192E] uppercase mb-1 flex items-center gap-1.5">
+                                    <i data-lucide="monitor-smartphone"></i> Front-End User Experience
+                                </h4>
+                                <ul class="space-y-1 text-gray-600 list-disc list-inside leading-relaxed">
+                                    <li>Tailwind CSS Responsive Web App</li>
+                                    <li>Streamlit Dashboard (Exec view)</li>
+                                    <li>PWA (Progressive Web App)</li>
+                                    <li>Real-time Event WebSockets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "slide-demo",
+                title: "INTERACTIVE LIVE APPLICATION WALKTHROUGH",
+                html: `
+                    <div>
+                        <span class="text-xs font-bold text-[#A6192E] uppercase tracking-widest font-mono">Deliverable Requirement 4</span>
+                        <h3 class="font-serif-et text-2xl font-bold text-slate-900 mt-1 mb-2">
+                            AegisAuto: Real-Time Operational Scenario Simulation
+                        </h3>
+                        <p class="text-xs text-gray-600 mb-4">
+                            Witness how the cognitive engine instantly processes a high-threat logistical disruption and optimizes shop floor capability metrics.
+                        </p>
+
+                        <!-- Simulated Dashboard Console -->
+                        <div class="bg-[#101723] rounded-xl overflow-hidden border border-gray-800 shadow-xl font-mono text-xs">
+                            
+                            <!-- Console Header Bar -->
+                            <div class="bg-slate-900 px-4 py-2 flex items-center justify-between border-b border-gray-800">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                    <span class="text-gray-400 font-bold text-[10px] ml-2">AEGIS_AGENT_CONSOLE // V2.6</span>
+                                </div>
+                                <div class="bg-red-950/80 text-red-400 px-2.5 py-0.5 rounded border border-red-900 text-[9px] font-bold animate-pulse">
+                                    SYSTEM LINKED: EMERGENCY MODE ACTIVE
+                                </div>
+                            </div>
+
+                            <div class="p-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <!-- Simulator Control and Log Pane -->
+                                <div class="bg-slate-950 p-3 rounded border border-gray-800/80 flex flex-col justify-between">
+                                    <div>
+                                        <div class="text-gray-400 text-[10px] uppercase font-bold tracking-widest mb-2 border-b border-gray-800 pb-1">
+                                            Simulation Controls
+                                        </div>
+                                        <p class="text-[11px] text-gray-300 leading-normal mb-3">
+                                            Trigger a mock supply chain catastrophe to observe the Gemini API reasoning engine instantly recommend solutions and rewrite parameters:
+                                        </p>
+                                        
+                                        <div class="space-y-2">
+                                            <button onclick="triggerSimulationScenario('suez')" class="w-full bg-[#A6192E]/90 hover:bg-[#A6192E] text-white p-2 rounded text-left transition flex items-center justify-between">
+                                                <span>1. Geopolitical Shipment Freeze</span>
+                                                <i data-lucide="alert-triangle" class="w-4 h-4 text-yellow-300"></i>
+                                            </button>
+                                            <button onclick="triggerSimulationScenario('steel')" class="w-full bg-[#A6192E]/90 hover:bg-[#A6192E] text-white p-2 rounded text-left transition flex items-center justify-between">
+                                                <span>2. Commodity Metal Price Shock</span>
+                                                <i data-lucide="trending-up" class="w-4 h-4 text-emerald-300"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 pt-3 border-t border-gray-900">
+                                        <div class="text-amber-500 font-bold text-[10px] mb-1">REAL-TIME GEMINI LOG:</div>
+                                        <div class="bg-black/80 p-2.5 rounded h-24 overflow-y-auto text-emerald-400 text-[10px] leading-relaxed font-mono" id="sim-console-output">
+                                            [Ready] Awaiting user trigger. Click one of the simulation scenario buttons above to execute the cognitive logic.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Live Interactive Dashboard Visual Output -->
+                                <div class="bg-slate-950 p-3 rounded border border-gray-800/80 flex flex-col justify-between text-white">
+                                    <div>
+                                        <div class="text-gray-400 text-[10px] uppercase font-bold tracking-widest mb-2 border-b border-gray-800 pb-1 flex justify-between">
+                                            <span>Factory Control HUD</span>
+                                            <span class="text-gray-500 font-bold">ZONE_INDIA_WEST_1</span>
+                                        </div>
+
+                                        <div class="grid grid-cols-2 gap-2 mb-3">
+                                            <div class="bg-slate-900 p-2 rounded border border-gray-800">
+                                                <span class="block text-[8px] text-gray-500 uppercase">Process Capability (Cpk)</span>
+                                                <span class="text-base font-bold text-emerald-400" id="sim-cpk-val">1.72</span>
+                                            </div>
+                                            <div class="bg-slate-900 p-2 rounded border border-gray-800">
+                                                <span class="block text-[8px] text-gray-500 uppercase">Defect Escape Rate</span>
+                                                <span class="text-base font-bold text-emerald-400" id="sim-defect-val">0.03%</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Simple visual representation of assembly line item -->
+                                        <div class="bg-slate-900 p-2.5 rounded border border-gray-800 text-[10px]">
+                                            <div class="flex justify-between font-bold text-gray-400 mb-1">
+                                                <span>Quality Control feed</span>
+                                                <span class="text-red-500 font-bold flex items-center gap-1 animate-pulse">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600 inline-block"></span> CAMERA_04_FEED
+                                                </span>
+                                            </div>
+                                            
+                                            <!-- Box simulating camera object detection -->
+                                            <div class="border border-dashed border-gray-700 h-16 rounded bg-slate-950 flex flex-col items-center justify-center relative overflow-hidden">
+                                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent w-full h-full animate-pulse"></div>
+                                                <span class="text-[10px] text-gray-500" id="sim-hud-status">Awaiting feed trigger...</span>
+                                                <span class="absolute top-1 left-1 text-[8px] bg-slate-800 px-1 py-0.5 rounded text-gray-400" id="sim-detector-label">WELD_DETECT_MOD</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3 bg-[#A6192E]/20 border border-[#A6192E]/50 p-2 rounded text-[10px] text-gray-300">
+                                        <strong>Operator Action:</strong> <span id="sim-operator-guidance">Maintain line speed at standard 12 units/hr. Camera is feeding normal frame rates.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "slide-why-considered",
+                title: "WHY YOUR SOLUTION MUST BE CONSIDERED?",
+                html: `
+                    <div>
+                        <span class="text-xs font-bold text-[#A6192E] uppercase tracking-widest font-mono">Deliverable Requirement 5</span>
+                        <h3 class="font-serif-et text-3xl font-bold text-slate-900 mt-1 mb-6">
+                            Winning Pitch Differentiators & Market Fit
+                        </h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            
+                            <!-- Left: Standard vs AegisAuto Comparison Table -->
+                            <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md">
+                                <div class="bg-[#101723] text-[#FFF1E0] font-serif-et text-sm font-bold py-3 px-4">
+                                    Strategic Advantage Assessment
+                                </div>
+                                <div class="divide-y divide-gray-200 text-xs">
+                                    <div class="p-3 bg-slate-50 grid grid-cols-3 font-bold text-gray-700">
+                                        <span>Focus Area</span>
+                                        <span>Standard Legacy ERP</span>
+                                        <span class="text-[#A6192E]">AegisAuto Engine</span>
+                                    </div>
+                                    <div class="p-3 grid grid-cols-3 text-gray-600">
+                                        <span class="font-bold text-gray-800">Risk Reaction</span>
+                                        <span>Manual assessments taking up to 48 hours</span>
+                                        <span class="text-emerald-700 font-bold">Automated mitigation in minutes</span>
+                                    </div>
+                                    <div class="p-3 grid grid-cols-3 text-gray-600">
+                                        <span class="font-bold text-gray-800">Shop Floor Sync</span>
+                                        <span>Completely isolated spreadsheet updates</span>
+                                        <span class="text-emerald-700 font-bold">Closed-loop parameter configuration</span>
+                                    </div>
+                                    <div class="p-3 grid grid-cols-3 text-gray-600">
+                                        <span class="font-bold text-gray-800">Alternative Search</span>
+                                        <span>Limited static vendor phonebooks</span>
+                                        <span class="text-emerald-700 font-bold">AI Web-Search alternate routing</span>
+                                    </div>
+                                    <div class="p-3 grid grid-cols-3 text-gray-600">
+                                        <span class="font-bold text-gray-800">Tech Barrier</span>
+                                        <span>Highly expensive multi-month software installs</span>
+                                        <span class="text-emerald-700 font-bold">Low-code APIs targeting existing cams</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Key Competitive Pitches for Jury -->
+                            <div class="flex flex-col justify-between gap-4">
+                                <div class="bg-emerald-50/50 border border-emerald-200 rounded-lg p-4">
+                                    <h4 class="font-serif-et text-base font-bold text-emerald-900 mb-1 flex items-center gap-1.5">
+                                        <i data-lucide="check-circle" class="text-emerald-700 w-5 h-5"></i> Immediate Enterprise Cost Savings
+                                    </h4>
+                                    <p class="text-xs text-emerald-800 leading-normal">
+                                        By dynamically shifting material sourcing during logistics bottlenecks and continuously calibrating line metrics, AegisAuto minimizes high-cost assembly idling, saving auto conglomerates millions.
+                                    </p>
+                                </div>
+
+                                <div class="bg-indigo-50/50 border border-indigo-200 rounded-lg p-4">
+                                    <h4 class="font-serif-et text-base font-bold text-indigo-900 mb-1 flex items-center gap-1.5">
+                                        <i data-lucide="map" class="text-indigo-700 w-5 h-5"></i> Designed for Emerging Markets & India Hubs
+                                    </h4>
+                                    <p class="text-xs text-indigo-800 leading-normal">
+                                        Optimized to scale within dynamic logistics patterns like the western and southern automotive corridors (Pune, Chennai, NCR). Highly compatible with typical fluctuations in localized supplier availability.
+                                    </p>
+                                </div>
+
+                                <div class="bg-amber-50/50 border border-amber-200 rounded-lg p-4">
+                                    <h4 class="font-serif-et text-base font-bold text-amber-900 mb-1 flex items-center gap-1.5">
+                                        <i data-lucide="shield-check" class="text-amber-700 w-5 h-5"></i> Safe Compliance Guardrails
+                                    </h4>
+                                    <p class="text-xs text-amber-800 leading-normal">
+                                        Ensures alternative recommended suppliers and materials conform fully with Indian BIS, AIS standards, and strict global automotive quality frameworks.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "slide-thankyou",
+                title: "THANK YOU",
+                html: `
+                    <div class="text-center py-10 max-w-3xl mx-auto">
+                        <div class="inline-block bg-[#A6192E] text-white font-cinzel text-xs tracking-widest px-4 py-1 mb-4 font-bold">
+                            Submission Concluded
+                        </div>
+
+                        <h2 class="font-serif-et text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                            Driving Resilience in the Age of Intelligent Automanufacturing
+                        </h2>
+                        
+                        <p class="font-serif-et text-lg italic text-gray-700 mb-8 leading-relaxed">
+                            "Building highly robust, predictive systems ensures Indian automotive leaders remain uninterrupted, compliant, and cost-efficient."
+                        </p>
+
+                        <div class="w-16 h-0.5 bg-gray-300 mx-auto mb-8"></div>
+
+                        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-lg max-w-xl mx-auto mb-6 text-left text-xs">
+                            <h4 class="font-serif-et text-sm font-bold text-[#A6192E] uppercase tracking-wider mb-3 text-center">
+                                Direct Judge Handout Summary
+                            </h4>
+                            <div class="space-y-2 leading-relaxed">
+                                <div class="flex justify-between border-b border-gray-100 pb-1.5">
+                                    <span class="text-gray-500">Proposal Theme:</span>
+                                    <span class="font-semibold text-gray-800">Theme 1 (Supply Chain & Smart Mfg)</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-100 pb-1.5">
+                                    <span class="text-gray-500">Proposed Solution Name:</span>
+                                    <span class="font-bold text-emerald-800">${projectName}</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-100 pb-1.5">
+                                    <span class="text-gray-500">Proposed Team Name:</span>
+                                    <span class="font-semibold text-gray-800 active-team-placeholder">${teamName}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Core Engine Tech Stack:</span>
+                                    <span class="font-semibold text-indigo-700">Gemini 2.5 API, OpenCV, YOLO, FastAPI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-500">
+                            Ready to take this to presentation stage. Use the slide controls or the export button in the sidebar to download files.
+                        </p>
+                    </div>
+                `
+            }
+        ];
+
+        // Handle navigation and rendering
+        function renderActiveSlide() {
+            const data = getSlidesData();
+            const slide = data[currentSlideIdx];
+            
+            // Render basic layout inside slide window
+            const slideContainer = document.getElementById('active-slide-view');
+            slideContainer.innerHTML = `
+                <div class="mb-4">
+                    <h2 class="font-serif-et text-xl md:text-2xl font-black text-[#A6192E] uppercase tracking-tight border-b-2 border-red-100 pb-2 mb-6">
+                        ${slide.title}
+                    </h2>
+                    ${slide.html}
+                </div>
+            `;
+            
+            // Reinitialize dynamic Lucide icons inside slide
+            lucide.createIcons();
+            
+            // Update UI trackers
+            document.getElementById('slide-num-top').textContent = `SLIDE ${currentSlideIdx + 1} OF ${data.length}`;
+            document.getElementById('slide-fraction').textContent = `${currentSlideIdx + 1} / ${data.length}`;
+            
+            // Sync current list markers
+            updateSidebarNavList();
+            syncInteractivePlaceholders();
+            
+            // Run helper setups if current slide needs them
+            if (slide.id === 'slide-impact') {
+                updateImpactCalc();
+            }
+            if (slide.id === 'slide-techstack') {
+                highlightArchStep(1);
+            }
+            if (slide.id === 'slide-demo') {
+                triggerSimulationScenario('normal');
+            }
+        }
+
+        // Render Sidebar Navigation Nodes
+        function updateSidebarNavList() {
+            const data = getSlidesData();
+            const container = document.getElementById('slide-nav-list');
+            container.innerHTML = "";
+            
+            data.forEach((slide, idx) => {
+                const isActive = idx === currentSlideIdx;
+                const button = document.createElement('button');
+                button.className = `w-full text-left py-2 px-3 rounded text-xs font-semibold transition flex items-center justify-between ${
+                    isActive 
+                        ? 'bg-[#A6192E] text-white shadow' 
+                        : 'bg-gray-900 text-gray-300 hover:bg-gray-800'
+                }`;
+                
+                button.onclick = () => {
+                    currentSlideIdx = idx;
+                    renderActiveSlide();
+                };
+                
+                // Truncate long titles for neat sidebar
+                const shortTitle = slide.title.length > 25 ? slide.title.slice(0, 25) + '...' : slide.title;
+                
+                button.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="font-mono text-[9px] bg-slate-800 text-gray-400 w-4 h-4 rounded-full flex items-center justify-center font-bold">${idx + 1}</span>
+                        <span>${shortTitle}</span>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-3 h-3 ${isActive ? 'text-white' : 'text-gray-500'}"></i>
+                `;
+                container.appendChild(button);
+            });
+            lucide.createIcons();
+        }
+
+        // Navigation controls
+        function nextSlide() {
+            const max = getSlidesData().length;
+            if (currentSlideIdx < max - 1) {
+                currentSlideIdx++;
+                renderActiveSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIdx > 0) {
+                currentSlideIdx--;
+                renderActiveSlide();
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Live variables syncing
+        function syncAllFields() {
+            projectName = document.getElementById('global-project-name').value.trim().toUpperCase() || "AEGISAUTO";
+            targetOEM = document.getElementById('global-oem-name').value.trim() || "Tata Motors, Mahindra, Maruti Suzuki";
+            teamName = document.getElementById('global-team-name').value.trim() || "Team Pioneer-X";
+            teamMembers = document.getElementById('global-team-members').value.trim() || "A. Sharma, R. Verma, S. Patel";
+            focusDisruption = document.getElementById('global-disruptive-focus').value;
+
+            renderActiveSlide();
+        }
+
+        // Help sync placeholders within slides
+        function syncInteractivePlaceholders() {
+            document.querySelectorAll('.active-team-placeholder').forEach(el => {
+                el.textContent = teamName;
+            });
+            document.querySelectorAll('.active-members-placeholder').forEach(el => {
+                el.textContent = teamMembers;
+            });
+        }
+
+        // Tab selection helper for slide 2
+        function toggleFeatureTab(tab) {
+            const macroBtn = document.getElementById('tab-btn-macro');
+            const microBtn = document.getElementById('tab-btn-micro');
+            
+            if (tab === 'macro') {
+                macroBtn.className = "flex-1 bg-red-50 border border-red-200 rounded-lg p-3 text-left transition hover:bg-red-100/50";
+                microBtn.className = "flex-1 bg-gray-50 border border-gray-200 rounded-lg p-3 text-left transition hover:bg-red-50/50";
+            } else {
+                macroBtn.className = "flex-1 bg-gray-50 border border-gray-200 rounded-lg p-3 text-left transition hover:bg-red-50/50";
+                microBtn.className = "flex-1 bg-red-50 border border-red-200 rounded-lg p-3 text-left transition hover:bg-red-100/50";
+            }
+        }
+
+        // Live Calculator formula calculations (Slide 3)
+        function updateImpactCalc() {
+            const delays = parseInt(document.getElementById('slider-delays').value);
+            const costPerDay = parseInt(document.getElementById('slider-cost').value);
+            
+            document.getElementById('calc-delay-val').textContent = delays;
+            document.getElementById('calc-cost-val').textContent = costPerDay;
+            
+            // Formula metrics:
+            // Aegis prevents 35% of delays completely, and reduces average resolve time by 50%
+            const baselineTotalDays = delays * 3.5; 
+            const baselineTotalCost = baselineTotalDays * costPerDay;
+            
+            const optimizedTotalDays = (delays * 0.65) * (3.5 * 0.50);
+            const optimizedTotalCost = optimizedTotalDays * costPerDay;
+            
+            const savedCost = baselineTotalCost - optimizedTotalCost;
+            const savedDays = baselineTotalDays - optimizedTotalDays;
+            
+            // Display values formatted nicely
+            document.getElementById('calc-saved-cost').textContent = `₹ ${savedCost.toFixed(1)} Lakhs`;
+            document.getElementById('calc-saved-days').textContent = `${savedDays.toFixed(1)} Days`;
+        }
+
+        // Technical architecture interactive node selection detail lookup (Slide 4)
+        function highlightArchStep(stepNum) {
+            const detailContainer = document.getElementById('arch-step-detail');
+            if (!detailContainer) return;
+
+            let text = "";
+            switch (stepNum) {
+                case 1:
+                    text = `<strong>Step 1: Real-time Ingestion Layer:</strong> Scrapes global logistics alerts, commodity spot pricing, and regional metal constraints. Simultaneously ingests factory CCTV video frames locally via RTSP protocols. Uses light JSON parsing engines to map all data.`;
+                    break;
+                case 2:
+                    text = `<strong>Step 2: Gemini 2.5 Reasoning Core:</strong> Triggers when supply alerts are flagged. Gemini maps geopolitical bottlenecks against current manufacturing production runs. Automatically generates optimized supplier redirects and alternative raw material substitutions (structured JSON output).`;
+                    break;
+                case 3:
+                    text = `<strong>Step 3: ERP Action Hub:</strong> Seamlessly converts Gemini suggestions into concrete actions. Issues automatic purchase orders via REST APIs, notifies suppliers, and synchronizes real-time production quotas across facilities.`;
+                    break;
+                case 4:
+                    text = `<strong>Step 4: Smart Operator Interface:</strong> Feeds localized adjustment guides to shop floor operators on tablet screens. Re-calibrates CNC/stamping parameters dynamically to match adjusted materials, ensuring Cpk process capability remains intact.`;
+                    break;
+            }
+            detailContainer.innerHTML = text;
+        }
+
+        // Live Console simulation triggers (Slide 5)
+        function triggerSimulationScenario(scenario) {
+            const logBox = document.getElementById('sim-console-output');
+            const cpkVal = document.getElementById('sim-cpk-val');
+            const defectVal = document.getElementById('sim-defect-val');
+            const hudStatus = document.getElementById('sim-hud-status');
+            const detectorLabel = document.getElementById('sim-detector-label');
+            const operatorText = document.getElementById('sim-operator-guidance');
+
+            if (!logBox) return;
+
+            if (scenario === 'normal') {
+                logBox.innerHTML = `[Awaiting Trigger] Active Monitoring...<br>[System Log] No active supply chain threats found. SCM and shop floor operations running in sync.`;
+                if (cpkVal) cpkVal.textContent = "1.72";
+                if (defectVal) defectVal.textContent = "0.03%";
+                if (hudStatus) hudStatus.textContent = "WELD_CYLINDER: Normal Flow";
+                if (detectorLabel) detectorLabel.className = "absolute top-1 left-1 text-[8px] bg-emerald-950 text-emerald-400 px-1 py-0.5 rounded border border-emerald-800";
+                if (operatorText) operatorText.textContent = "Line running optimal cadence. Quality tolerances fully maintained.";
+            } 
+            else if (scenario === 'suez') {
+                logBox.innerHTML = `[CRITICAL WARNING] Suez Canal route blocked! Semiconductor container shipment delayed by 18 days.<br>[Agent Thinking] Querying alternative suppliers for micro-controllers...<br>[REACTION TRIGGERED] Recommended alternate: Sourcing shifted to Mumbai Electronics cluster Hub. Sourcing time reduced from 18 days to 48 hours. Dynamic production parameters adjusted.`;
+                if (cpkVal) cpkVal.textContent = "1.68";
+                if (defectVal) defectVal.textContent = "0.04%";
+                if (hudStatus) hudStatus.textContent = "SEMICONDUCTOR_RE-ROUTE: Shift to Tier-2 India Source";
+                if (detectorLabel) detectorLabel.className = "absolute top-1 left-1 text-[8px] bg-amber-950 text-amber-400 px-1 py-0.5 rounded border border-amber-800";
+                if (operatorText) operatorText.textContent = "Semiconductor alternate batch deployed. Quality control algorithms adjusted for micro-controller test validation.";
+            } 
+            else if (scenario === 'steel') {
+                logBox.innerHTML = `[METAL CRISIS ALERT] Alloy price spike detected (+24% globally). Raw steel supplier halts deliveries due to logistics constraint.<br>[Agent Sourcing] Triggering material substitution engine...<br>[REACTION TRIGGERED] Alternate alloy grade suggested (SAE 1045 substitute). Recalculating shop floor tool feed rates...<br>[UPDATING FACTORY] Dynamic line adjustments pushed. Defect risk fully neutralized.`;
+                if (cpkVal) cpkVal.textContent = "1.65";
+                if (defectVal) defectVal.textContent = "0.05%";
+                if (hudStatus) hudStatus.textContent = "ALLOY_SUBSTITUTE: SAE 1045 Active";
+                if (detectorLabel) detectorLabel.className = "absolute top-1 left-1 text-[8px] bg-blue-950 text-blue-400 px-1 py-0.5 rounded border border-blue-800";
+                if (operatorText) operatorText.textContent = "Stamping speed adjusted to 10 units/hr to account for alternative SAE 1045 hardness characteristics.";
+            }
+        }
+
+        // Markdown generation utility for copy-pasting to presentation software
+        function downloadPitchMarkdown() {
+            const mdContent = `
+# ET AUTOTECH HACKATHON 2026: IDEA SUBMISSION
+### Theme Chosen: Theme 1 - AI for Resilient Automotive Supply Chains & Smart Manufacturing
+### Project Name: ${projectName}
+### Registered Team: ${teamName}
+### Team Members: ${teamMembers}
+
+---
+
+## Slide 1: Theme Chosen - Brief Summary & Proposed Solution/Idea
+* **Problem Summary:** Automotive supply chains suffer from severe logistical volatility, materials shortages, and geopolitical friction. These issues lead to assembly line standstills and immediate quality drops when switching material grades.
+* **Proposed Solution (AegisAuto):** A dual-pipeline cognitive engine connecting macro logistics risk forecasting directly to micro shop-floor operations. When global supply disruptions occur, our Gemini reasoning engine proactively recommends alternative sourcing options, and adapts shop-floor machinery parameters automatically to preserve production.
+* **New Solution or Improvement?** This is a completely new architecture. It bridges separate enterprise ERP/SCM suites directly to localized industrial IoT cameras and process automation machines in a single closed loop.
+
+---
+
+## Slide 2: Impact of Proposed Solution (Feasibility, Scalability, ROI)
+* **Operational SCM Impact:** Cuts supply-chain-induced production halts by up to 35% through early geopolitical risk identification and automated alternate routing.
+* **Feasibility:** Highly feasible because it utilizes pre-trained computer vision models (YOLOv8) and lightweight REST APIs to sync with existing cameras and ERP systems, keeping capital investment minimal.
+* **Scalability:** The cloud-agnostic API container architecture can be deployed easily across all assembly plants and regional Tier-1 suppliers.
+
+---
+
+## Slide 3: Proposed Tech Stack & Architecture
+* **Backend & Intelligent Reasoning:** FastAPI, LangChain, PostgreSQL vector indexes, Gemini 2.5 API (Structured JSON Sourcing tool calling).
+* **Computer Vision & Edge Processing:** YOLOv8 model layers, OpenCV video streams, TensorRT.
+* **Client Visual Interfaces:** Progressive Web Apps, WebSockets real-time messaging, Streamlit analytics dashboards.
+
+---
+
+## Slide 4: Why Your Solution Must Be Considered
+1.  **Direct Financial Impact:** Drastically reduces factory line idle time, directly saving millions.
+2.  **Make in India Alignment:** Prioritizes local, high-reliability Indian manufacturing corridors (Pune, Chennai, NCR) when global suppliers experience shipping disruptions.
+3.  **High Process Stability:** Actively guards factory quality capability metrics ($C_p, C_{pk}$) to stay well above 1.67 during forced raw material changes.
+            `;
+
+            // Download trigger (safe standard text delivery method)
+            const blob = new Blob([mdContent.trim()], { type: 'text/markdown' });
+            const elem = window.document.createElement('a');
+            elem.href = window.URL.createObjectURL(blob);
+            elem.download = `${projectName}_Pitch_Notes.md`;
+            document.body.appendChild(elem);
+            elem.click();
+            document.body.removeChild(elem);
+        }
+
+        // Attach listeners for live updating variables
+        document.getElementById('global-team-name').addEventListener('input', syncAllFields);
+        document.getElementById('global-team-members').addEventListener('input', syncAllFields);
+        document.getElementById('global-project-name').addEventListener('input', syncAllFields);
+        document.getElementById('global-oem-name').addEventListener('input', syncAllFields);
+        document.getElementById('global-disruptive-focus').addEventListener('change', syncAllFields);
+
+        // Bootstrap deck initial render
+        window.onload = function() {
+            renderActiveSlide();
+        };
+    </script>
+</body>
+</html>
